@@ -71,7 +71,6 @@ run do
   e = @b.find_element(:class, "download-link")
   e.click
 # Search for Ruby 2.4.0
-  wait = Selenium::WebDriver::Wait.new(:timeout => 10)
   wait.until {
     @b.find_element(:link_text , "Ruby 2.4.0")
   }
