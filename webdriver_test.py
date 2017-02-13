@@ -1,16 +1,18 @@
 """
-Webdriver test
+Webdriver test using pytest module (CentOS 7)
 
 To run test:
 - install latest Selenium version
-    pip install -U selenium
+    > pip install -U selenium
 - install latest Firefox browser
+    > yum install firefox
 - get latest geckodriver
     https://github.com/mozilla/geckodriver/releases
+- install pytest
+    > yum install pytest
 
 Execute:
-# python webdriver_test.py
-
+# py.test webdriver_test.py
 
 GIT
 
@@ -25,20 +27,20 @@ git commit -m "Initial revision of webdriver test"
 git push origin master
 
 """
-
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-b = webdriver.Firefox()
-b.get("https://docs.python.org/")
-e = b.find_element_by_link_text('Tutorial')
-e.click()
 
-try:
-    element = WebDriverWait(b, 10).until(
-        EC.presence_of_element_located((By.ID, "the-python-tutorial"))
-    )
-finally:
-    b.quit()
+def test_01():
+    b = webdriver.Firefox()
+    b.get("https://docs.python.org/")
+    e = b.find_element_by_link_text('Tutorial')
+    e.click()
+    try:
+        element = WebDriverWait(b, 10).until(
+            EC.presence_of_element_located((By.ID, "the-python-tutorial"))
+        )
+    finally:
+        b.quit()
+
