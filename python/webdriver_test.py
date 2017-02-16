@@ -34,15 +34,15 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 @pytest.fixture
-def setup(request):
-    request.b = webdriver.Firefox()
+def browser(request):
+    driver = webdriver.Firefox()
     def teardown():
-        request.b.quit()
+        driver.quit()
     request.addfinalizer(teardown)
-    return request
+    return driver
 
-def test_01(setup):
-    b = setup.b
+def test_01(browser):
+    b = browser
     b.get("https://docs.python.org/")
     e = b.find_element_by_link_text('Tutorial')
     e.click()
