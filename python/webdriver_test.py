@@ -42,10 +42,9 @@ def browser(request):
     return driver
 
 def test_01(browser):
-    b = browser
-    b.get("https://docs.python.org/")
-    e = b.find_element_by_link_text('Tutorial')
-    e.click()
-    element = WebDriverWait(b, 10).until(
+    browser.get("https://docs.python.org/")
+    element = browser.find_element_by_link_text('Tutorial')
+    element.click()
+    element = WebDriverWait(browser, 10).until(
         EC.presence_of_element_located((By.ID, "the-python-tutorial"))
     )
