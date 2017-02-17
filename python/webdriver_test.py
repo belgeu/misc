@@ -27,20 +27,24 @@ git commit -m "Initial revision of webdriver test"
 git push origin master
 
 """
+import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-def test_01():
-    b = webdriver.Firefox()
-    b.get("https://docs.python.org/")
-    e = b.find_element_by_link_text('Tutorial')
-    e.click()
-    try:
-        element = WebDriverWait(b, 10).until(
-            EC.presence_of_element_located((By.ID, "the-python-tutorial"))
-        )
-    finally:
-        b.quit()
+@pytest.fixture
+def browser(request):
+    driver = webdriver.Firefox()
+    def teardown():
+        driver.quit()
+    request.addfinalizer(teardown)
+    return driver
 
+def test_01(browser):
+    browser.get("https://docs.python.org/")
+    element = browser.find_element_by_link_text('Tutorial')
+    element.click()
+    element = WebDriverWait(browser, 10).until(
+        EC.presence_of_element_located((By.ID, "the-python-tutorial"))
+    )
