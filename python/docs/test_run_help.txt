@@ -1,0 +1,30 @@
+Prepare environment:
+- get epel repo
+    > wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
+    > rpm -ivh epel-release-7-9.noarch.rpm
+- install pip
+    > yum install python-pip
+- install Selenium package using pip
+    > pip install -r pip_packages.txt
+- install latest Firefox browser
+    > yum install firefox
+- get latest geckodriver and place it into directory specified in PATH
+    https://github.com/mozilla/geckodriver/releases
+    EXAMPLE FOR geckodriver-v0.14.0
+    > wget https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-linux64.tar.gz
+    > tar zxvf geckodriver-v0.14.0-linux64.tar.gz -C /bin/
+- install/run X virtual frame buffer:
+    > yum install Xvfb
+    > Xvfb :1 -screen 0 1024x768x16 &
+- set environment
+    > source environment_set
+- install pytest
+    > yum install pytest
+
+To run test using pytest:
+
+# py.test webdriver_test.py
+
+To run test using unittest:
+
+# python unit_test.py
