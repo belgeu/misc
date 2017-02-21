@@ -5,7 +5,7 @@ Prepare environment:
 - install pip
     > yum install python-pip
 - install Selenium package using pip
-    > pip install -r pip_packages.txt
+    > pip install -r requirements.txt
 - install latest Firefox browser
     > yum install firefox
 - get latest geckodriver and place it into directory specified in PATH
