@@ -1,0 +1,27 @@
+Webdriver test (CentOS7)
+
+Execute setup.sh:
+    > sh setup.sh
+
+OR
+
+Manual steps:
+- install ruby
+    > yum install ruby ruby-devel
+- install gcc
+    > yum install gcc
+- install latest Selenium version and headless
+    > gem install selenium-webdriver
+    > gem install headless
+- install latest Firefox browser
+    > yum install firefox
+- get latest geckodriver and place it into directory specified in PATH
+    https://github.com/mozilla/geckodriver/releases
+    EXAMPLE FOR geckodriver-v0.14.0
+    > wget https://github.com/mozilla/geckodriver/releases/download/v0.14.0/geckodriver-v0.14.0-linux64.tar.gz
+    > tar zxvf geckodriver-v0.14.0-linux64.tar.gz -C /bin/
+- install Xvfb
+    > yum install Xvfb
+
+Execute:
+# ruby webdriver_test.rb
